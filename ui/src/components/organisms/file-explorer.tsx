@@ -17,7 +17,7 @@ import FileContent from './file-content';
 //     }
 // }
 
-const FileExplorer = () => {
+const FileExplorer = ({ roomID }: { roomID: string }) => {
     const [filesPath, setFilesPath] = useState<string[]>([]);
     const router = useRouter();
     const pathname = usePathname();
@@ -34,7 +34,6 @@ const FileExplorer = () => {
         setFilesPath((prevState) => prevState.filter((fp) => fp !== filepath));
     };
 
-    console.log(filesPath);
     return (
         <div className="flex flex-col w-full">
             <ul className="flex">
@@ -61,7 +60,7 @@ const FileExplorer = () => {
                     );
                 })}
             </ul>
-            <FileContent path={''} />
+            <FileContent path={''} roomID={roomID} />
         </div>
     );
 };

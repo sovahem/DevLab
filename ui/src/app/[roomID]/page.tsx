@@ -1,7 +1,10 @@
+import Chat from '@/components/organisms/chat';
 import FileExplorer from '@/components/organisms/file-explorer';
+import ImportFile from '@/components/organisms/import-file';
 import Navigation from '@/components/organisms/navigation';
 import fs from 'fs';
 import path from 'path';
+import { FC } from 'react';
 
 export function* generateDirectoryStructure(
     directory: string,
@@ -30,14 +33,22 @@ export function* generateDirectoryStructure(
     }
 }
 
-const RoomID = () => {
-    const directory = path.join(process.cwd(), 'src');
+type RoomIDProps = {
+    params: {
+        roomID: string;
+    };
+};
+
+const RoomID: FC<RoomIDProps> = ({ params }) => {
+    const { roomID } = params;
+    const directory = path.join('../../../../autoForm/test-sayse/src');
     const structure = [...generateDirectoryStructure(directory)];
-    console.log(structure);
     return (
         <div className="flex flex-1 h-full w-full">
-            <Navigation structure={structure} />
-            <FileExplorer />
+            <ImportFile />
+            {/* <Navigation structure={structure} />
+            <FileExplorer roomID={roomID} />
+            <Chat roomID={roomID} /> */}
         </div>
     );
 };
