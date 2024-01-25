@@ -54,7 +54,13 @@ const WebRTCPage: React.FC<WebRTCPageProps> = ({ roomID }) => {
         }
     };
 
-    const receiveOffer = async ({ from, offer }) => {
+    const receiveOffer = async ({
+        from,
+        offer,
+    }: {
+        from: string;
+        offer: RTCSessionDescriptionInit;
+    }) => {
         try {
             console.info("B RECOIT l'OFFRE DE A", offer);
             await peer.setRemoteDescription(offer);
@@ -72,7 +78,13 @@ const WebRTCPage: React.FC<WebRTCPageProps> = ({ roomID }) => {
         }
     };
 
-    const callAccepted = async ({ from, ans }) => {
+    const callAccepted = async ({
+        from,
+        ans,
+    }: {
+        from: string;
+        ans: RTCSessionDescriptionInit;
+    }) => {
         console.log(
             'A met à jour sa description distante avec la réponse ',
             ans,
