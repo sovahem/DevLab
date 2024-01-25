@@ -29,6 +29,7 @@ const ImportFile = () => {
     const sendRepository = () => {
         // if (!files) return;
         const formData = new FormData();
+        //@ts-ignore
         formData.append('file', files[0]);
 
         const url = '/repository';
