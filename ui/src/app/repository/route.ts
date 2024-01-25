@@ -17,6 +17,7 @@ export async function POST(req: Request, res: any) {
         );
     }
 
+    //@ts-ignore
     const buffer = Buffer.from(await file.arrayBuffer());
     const zip = new AdmZip(buffer);
     // const filename = file.name.replaceAll(' ', '_');
