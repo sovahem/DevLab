@@ -46,7 +46,7 @@ const ImportFile = () => {
             .then((data) => {
                 console.log('Réponse du serveur:', data);
             })
-            .catch((error) => {
+            .catch((error: any) => {
                 console.error('Erreur lors de la requête:', error);
             });
     };

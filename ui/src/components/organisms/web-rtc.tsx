@@ -95,7 +95,7 @@ const WebRTCPage: React.FC<WebRTCPageProps> = ({ roomID }) => {
             console.log(
                 'A met à jour sa description distante avec la réponse de B',
             );
-        } catch (error) {
+        } catch (error: any) {
             console.error(
                 'Erreur lors de la mise à jour des descriptions:',
                 error,

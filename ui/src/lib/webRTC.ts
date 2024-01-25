@@ -13,7 +13,7 @@ export const createSDPOffer = async (peerConnection: RTCPeerConnection) => {
     try {
         const offer = await peerConnection.createOffer();
         return await peerConnection.setLocalDescription(offer);
-    } catch (error) {
+    } catch (error: any) {
         console.error(error);
     }
 };

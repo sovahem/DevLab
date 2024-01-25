@@ -17,7 +17,7 @@ export const readFile = async (
         if (filepath) {
             return await fs.readFileSync(getFilePath(filepath), 'utf8');
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error reading file:', error.message);
         throw error; // Vous pouvez gérer l'erreur ici ou la remonter si nécessaire
     }
@@ -28,7 +28,7 @@ export const writeFile = async (filepath: string | null, content: string) => {
         if (filepath) {
             return await fs.writeFileSync(getFilePath(filepath), content);
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error(error);
     }
 };

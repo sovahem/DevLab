@@ -29,7 +29,7 @@ export async function POST(req: Request, res: any) {
         //     buffer,
         // );
         return NextResponse.json({ Message: 'Success', status: 201 });
-    } catch (error) {
+    } catch (error: any) {
         console.log('Error occured ', error);
         return NextResponse.json({ Message: 'Failed', status: 500 });
     }
