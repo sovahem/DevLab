@@ -9,7 +9,6 @@ export async function POST(req: Request, res: any) {
     const formData = await req.formData();
 
     const file = formData.get('file');
-    console.log(formData);
     if (!file) {
         return NextResponse.json(
             { error: 'No files received.' },

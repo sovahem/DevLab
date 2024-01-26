@@ -31,8 +31,6 @@ const FormRow: FC<FormRowProps> = ({
     child,
 }) => {
     const { control } = useFormContext();
-
-    console.log(control);
     return (
         <FormField
             control={control}

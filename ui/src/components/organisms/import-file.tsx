@@ -20,11 +20,8 @@ const ImportFile = () => {
 
     const handleSelectFile = (e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
-        console.log(files);
         if (files) setFiles(e.target.files);
     };
-
-    console.log(files);
 
     const sendRepository = () => {
         // if (!files) return;

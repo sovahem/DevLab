@@ -23,6 +23,7 @@ export const FormBase = <T extends {}>(props: FormBaseProps<T>) => {
         zodSchema,
         children,
         relationsTableIgnore = [],
+        handleSubmit,
     } = props;
 
     const { id = '', formType } = useParams();
@@ -32,6 +33,7 @@ export const FormBase = <T extends {}>(props: FormBaseProps<T>) => {
     });
 
     const onSubmit = async (values: z.infer<typeof zodSchema>) => {
+        handleSubmit(values);
         // action(values);
     };
 

@@ -2,12 +2,40 @@
 
 import Tree from '@uiw/react-tree';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 import { createQueryString } from '../../lib/string';
 import { DirectoryType, FileType } from '../../lib/types';
 type NavigationProps = {
     structure: (FileType | DirectoryType)[];
 };
+
+const Navigation: FC<NavigationProps> = ({ structure }) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    return (
+        <Tree
+            className="p-4"
+            data={structure}
+            onSelected={(re, key, te, item) => {
+                if (item.type === 'file') {
+                    router.push(
+                        pathname +
+                            '?' +
+                            createQueryString(
+                                'filepath',
+                                String(key),
+                                searchParams,
+                            ),
+                    );
+                }
+            }}
+        />
+    );
+};
+
+export default Navigation;
 
 // const treeConfig = {
 //     dataSource: {
@@ -60,40 +88,6 @@ type NavigationProps = {
 //     //controller: createController(this, this.getActions.bind(this), true),
 //     dnd: new TreeDnD()
 // };
-
-const Navigation: FC<NavigationProps> = ({ structure }) => {
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const containerRef = useRef(null);
-    const tree = new Tree(containerRef, null);
-
-    return(
-        (
-            <>
-                <div ref={containerRef}></div>
-                <Tree
-                    data={structure}
-                    onSelected={(re, key, te, item) => {
-                        if (item.type === 'file') {
-                            router.push(
-                                pathname +
-                                    '?' +
-                                    createQueryString(
-                                        'filepath',
-                                        String(key),
-                                        searchParams,
-                                    ),
-                            );
-                        }
-                    }}
-                />
-            </>
-        ),
-    );
-};
-
-export default Navigation;
 
 // const List: FC<{
 //     item: FileType | DirectoryType;

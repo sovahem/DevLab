@@ -6,7 +6,6 @@ const getFilePath = (filepath: string) => {
     const parts = filepath.split(process.cwd());
     const modifiedString = parts.join('');
     const filePath = path.join(process.cwd(), modifiedString);
-    console.log('FILEPATH', filePath);
     return filePath;
 };
 

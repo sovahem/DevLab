@@ -2,7 +2,8 @@ import { AuthError } from 'next-auth';
 import { signIn } from '../../auth';
 
 export const authenticate = async (formData: any) => {
-    console.log(formData);
+    console.log('FORMSARTWQ', formData);
+
     try {
         await signIn('credentials', formData);
     } catch (error) {

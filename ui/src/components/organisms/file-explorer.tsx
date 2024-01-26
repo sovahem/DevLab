@@ -36,11 +36,17 @@ const FileExplorer = ({ roomID }: { roomID: string }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <ul className="flex">
+            <ul className="flex border-b border-nearest-gray-80">
                 {filesPath.map((fp) => {
                     const fileName = fp.split('/').at(-1);
+                    const isActive = fp === filepath;
+
                     return (
                         <li
+                            className="w-40 pl-2 pr-1 py-1.5 border border-nearest-gray-80 border-b-none"
+                            style={{
+                                background: isActive ? '#1A1A1A' : '',
+                            }}
                             onClick={() => {
                                 router.push(
                                     pathname +

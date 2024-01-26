@@ -1,11 +1,11 @@
+'use server';
 import { sql } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { z } from 'zod';
+import * as z from 'zod';
 import type { User } from './app/lib/definitions';
 import { authConfig } from './auth.config';
-
 async function getUser(email: string): Promise<User | undefined> {
     try {
         const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
@@ -27,7 +27,6 @@ export const { auth, signIn, signOut } = NextAuth({
                         password: z.string().min(6),
                     })
                     .safeParse(credentials);
-
                 if (parsedCredentials.success) {
                     const { email, password } = parsedCredentials.data;
                     const user = await getUser(email);
@@ -36,7 +35,6 @@ export const { auth, signIn, signOut } = NextAuth({
                         password,
                         user.password,
                     );
-
                     if (passwordsMatch) return user;
                 }
 

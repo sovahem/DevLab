@@ -4,6 +4,7 @@ import { FormBase } from '@/components/ui/form-base';
 import { FormRowTextField } from '@/components/ui/form-row-text-field';
 import { Text } from '@/components/ui/text';
 import { UserSchema, UserState } from '@/entities/User';
+import { authenticate } from '@/lib/action';
 
 const Login = () => {
     return (
@@ -17,6 +18,7 @@ const Login = () => {
                     className={'flex flex-col gap-3 w-96'}
                     dataState={UserState}
                     zodSchema={UserSchema}
+                    handleSubmit={authenticate}
                     // onSubmit={authenticate}
                 >
                     <FormRowTextField
