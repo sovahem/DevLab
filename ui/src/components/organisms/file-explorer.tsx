@@ -1,8 +1,8 @@
 'use client';
 
-import { createQueryString } from '@/lib/string';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { createQueryString } from '../../lib/string';
 import FileContent from './file-content';
 // async function getContent(path: string) {
 //     'use server';

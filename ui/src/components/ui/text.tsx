@@ -1,11 +1,10 @@
-import { FC } from 'react';
+import { cn } from '@/lib/utils';
+import { FC, PropsWithChildren } from 'react';
 
 export type TextProps = {
-    text: string;
-};
+    className?: string;
+} & PropsWithChildren;
 
-const Text: FC<TextProps> = ({ text }) => {
-    return <p>{text}</p>;
+export const Text: FC<TextProps> = ({ className = '', children }) => {
+    return <p className={cn('Text', className)}>{children}</p>;
 };
-
-export default Text;

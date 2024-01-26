@@ -1,37 +1,95 @@
 'use client';
 
-import { createQueryString } from '@/lib/string';
-import { DirectoryType, FileType } from '@/lib/types';
 import Tree from '@uiw/react-tree';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FC } from 'react';
-
+import { FC, useRef } from 'react';
+import { createQueryString } from '../../lib/string';
+import { DirectoryType, FileType } from '../../lib/types';
 type NavigationProps = {
     structure: (FileType | DirectoryType)[];
 };
+
+// const treeConfig = {
+//     dataSource: {
+//       /**
+//        * Returns the unique identifier of the given element.
+//        * No more than one element may use a given identifier.
+//        */
+//       getId: function(tree, element){
+//         return element.key;
+//       },
+
+//       /**
+//        * Returns a boolean value indicating whether the element has children.
+//        */
+//       hasChildren: function(tree, element){
+//         return element.isDirectory;
+//       },
+
+//       /**
+//        * Returns the element's children as an array in a promise.
+//        */
+//       getChildren: function(tree, element){
+//         return Promise.resolve(element.children);
+//       },
+
+//       /**
+//        * Returns the element's parent in a promise.
+//        */
+//       getParent: function(tree, element){
+//           return Promise.resolve(element.parent);
+//         },
+//     },
+//     renderer: {
+//       getHeight: function(tree, element){
+//         return 24;
+//       },
+//       renderTemplate: function(tree, templateId, container) {
+//         return new FileTemplate(container);
+//       },
+//       renderElement: function(tree, element, templateId, templateData) {
+//           templateData.set(element);
+//       },
+//       disposeTemplate: function(tree, templateId, templateData) {
+//           FileTemplate.dispose();
+//       }
+//     },
+
+//     //tree config requires a controller property but we would defer its initialisation
+//     //to be done by the MonacoTree component
+//     //controller: createController(this, this.getActions.bind(this), true),
+//     dnd: new TreeDnD()
+// };
 
 const Navigation: FC<NavigationProps> = ({ structure }) => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
+    const containerRef = useRef(null);
+    const tree = new Tree(containerRef, null);
 
-    return (
-        <Tree
-            data={structure}
-            onSelected={(re, key, te, item) => {
-                if (item.type === 'file') {
-                    router.push(
-                        pathname +
-                            '?' +
-                            createQueryString(
-                                'filepath',
-                                String(key),
-                                searchParams,
-                            ),
-                    );
-                }
-            }}
-        />
+    return(
+        (
+            <>
+                <div ref={containerRef}></div>
+                <Tree
+                    data={structure}
+                    onSelected={(re, key, te, item) => {
+                        if (item.type === 'file') {
+                            router.push(
+                                pathname +
+                                    '?' +
+                                    createQueryString(
+                                        'filepath',
+                                        String(key),
+                                        searchParams,
+                                    ),
+                            );
+                        }
+                    }}
+                />
+            </>
+        ),
     );
 };
 

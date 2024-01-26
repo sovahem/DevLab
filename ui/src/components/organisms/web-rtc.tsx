@@ -1,7 +1,7 @@
 'use client';
-import { socket } from '@/lib/socket-client';
-import { iceServers } from '@/lib/webRTC';
 import React, { useEffect, useRef, useState } from 'react';
+import { socket } from '../../lib/socket-client';
+import { iceServers } from '../../lib/webRTC';
 
 type WebRTCPageProps = {
     roomID: string;

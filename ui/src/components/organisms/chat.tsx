@@ -1,6 +1,6 @@
 'use client';
-import { socket } from '@/lib/socket-client';
 import { FC, useEffect, useState } from 'react';
+import { socket } from '../../lib/socket-client';
 
 type ChatProps = {
     roomID: string;
