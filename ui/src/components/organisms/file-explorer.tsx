@@ -43,7 +43,7 @@ const FileExplorer = ({ roomID }: { roomID: string }) => {
 
                     return (
                         <li
-                            className="w-40 pl-2 pr-1 py-1.5 border border-nearest-gray-80 border-b-none"
+                            className="w-40 pl-2 pr-2 py-1.5 border border-nearest-gray-80 border-b-none flex justify-between"
                             style={{
                                 background: isActive ? '#1A1A1A' : '',
                             }}
